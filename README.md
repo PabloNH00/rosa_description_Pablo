@@ -1,10 +1,11 @@
 # README #
 
 ROSA robot repository for the ROS2 Simulation package 
-### What is this repository for? ###
 
-* Quick summary cf
-* Version
+### How to run the simulation ###
+    colcon build
+    source install/local_setup.bash
+    ros2 launch rosa_description rosa_gazebo_launch.py
 
 
 ### How do I get set up? ###
