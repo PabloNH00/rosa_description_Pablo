@@ -1,7 +1,6 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-Probando
+ROSA robot repository for the ROS2 Simulation package 
 ### What is this repository for? ###
 
 * Quick summary cf
