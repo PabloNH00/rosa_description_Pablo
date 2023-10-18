@@ -1,11 +1,11 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-Probando
-### What is this repository for? ###
+ROSA robot repository for the ROS2 Simulation package 
 
-* Quick summary cf
-* Version
+### How to run the simulation ###
+    colcon build
+    source install/local_setup.bash
+    ros2 launch rosa_description rosa_gazebo_launch.py
 
 
 ### How do I get set up? ###
