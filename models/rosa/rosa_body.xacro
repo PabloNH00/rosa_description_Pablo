@@ -11,16 +11,16 @@
                izz="5.683196351726" />
     </inertial>
     <visual>
-      <origin xyz="0. 0. 0" rpy="-1.571 0 1.571" />
+      <origin xyz="0. 0. 0.2" rpy="0 3.14159 0" />
       <geometry>
           <mesh filename="package://rosa_description/models/rosa/meshes/ROSA_BODY.dae" scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0. 0. 0.0" rpy="-1.571 0 1.571" />
+      <origin xyz="0. 0. 0.2" rpy="0 3.14159 0" />
       <geometry>
         <!--<box size="0.68 0.41 0.25"/> -->
-         <mesh filename="package://rosa_description/models/rosa/meshes/ROSA_BODY.dae" scale="0.001 0.001 0.001"/>
+         <mesh filename="package://rosa_description/models/rosa/meshes/ROSA_BODY_SIMPLE.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
