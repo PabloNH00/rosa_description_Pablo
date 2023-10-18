@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<robot name="mmo_500" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+ 
+  <xacro:include filename="rosa_gazebo.xacro" />
+  <xacro:include filename="omni_wheel.xacro" />
+  <xacro:include filename="rosa_body.xacro" />
+
+
+
+
+
+  <!-- Base Macro-->
+  <xacro:rosa_base name="base_link">
+  </xacro:rosa_base>
+
+  <!-- Wheel Macro -->
+  <xacro:mechanum_wheel name="wheel_front_left" parent="base_link">
+  	<origin xyz="0.25 0.28 0.13" rpy="0 0 0" />
+  </xacro:mechanum_wheel>
+
+  <xacro:mechanum_wheel name="wheel_front_right" parent="base_link">
+  	<origin xyz="0.25 -0.28 0.13" rpy="0 0 3.14" />
+  </xacro:mechanum_wheel>
+
+  <xacro:mechanum_wheel name="wheel_back_left" parent="base_link">
+  	<origin xyz="-0.25 0.28 0.13" rpy="0 0 0" />
+  </xacro:mechanum_wheel>
+
+  <xacro:mechanum_wheel name="wheel_back_right" parent="base_link">
+  	<origin xyz="-0.25 -0.28 0.13" rpy="0 0 3.14" />
+  </xacro:mechanum_wheel>
+
+  <!-- Sensors 
+  <xacro:sick_laser_v0 name="lidar_1" parent="base_link" ros_topic="lidar_1/scan_filtered">
+    <origin xyz="0.442 0 0.372" rpy="0 0 0" />
+  </xacro:sick_laser_v0>
+-->
+  
+
+
+</robot>
