@@ -4,23 +4,23 @@
 <xacro:macro name="rosa_base" params="name">
   <link name="${name}">
     <inertial>
-      <mass value="200"/>
-      <origin xyz="0 0 0" />
+      <mass value="400"/>
+      <origin xyz="0 0 0.5" />
        <inertia ixx="5.652232699207" ixy="0.009719934438" ixz="1.293988226423"
                iyy="5.669473158652" iyz="0.007379583694" 
                izz="5.683196351726" />
     </inertial>
     <visual>
-      <origin xyz="0. 0. 0.2" rpy="0 3.14159 0" />
+      <origin xyz="0. 0. 0.2" rpy="0 3.14159 3.14159" />
       <geometry>
-          <mesh filename="package://rosa_description/models/rosa/meshes/ROSA_BODY.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://rosa_description/models/rosa/meshes/ROSA_BODY.dae" scale="1.0 1.0 1.0"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0. 0. 0.2" rpy="0 3.14159 0" />
+      <origin xyz="0. 0. 0.2" rpy="0 3.14159 3.14159" />
       <geometry>
         <!--<box size="0.68 0.41 0.25"/> -->
-         <mesh filename="package://rosa_description/models/rosa/meshes/ROSA_BODY_SIMPLE.stl" scale="0.001 0.001 0.001"/>
+         <mesh filename="package://rosa_description/models/rosa/meshes/ROSA_BODY_SIMPLE.stl" scale="1.0 1.0 1.0"/>
       </geometry>
     </collision>
   </link>
