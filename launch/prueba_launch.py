@@ -16,11 +16,11 @@ def xacro_2_urdf_with_absolute_refs(pkg, xacro_model):
     urdf_file = os.path.join(share_dir,f'{xacro_model}.urdf')
     with open(urdf_file, 'w') as file:
         file.write(urdf_content)
-    return urdf_file, urdf_content
+    return urdf_file
     
 def generate_launch_description():
-  #urdf_file = xacro_2_urdf_with_absolute_refs('rosa_description','models/rosa/rosa.xacro')
-  urdf_file, urdf_content = xacro_2_urdf_with_absolute_refs('rosa_description','models/rosa/rosa.xacro')
+  urdf_file = xacro_2_urdf_with_absolute_refs('rosa_description','models/prueba/rosa.xacro')
+  
   use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
   return LaunchDescription([
@@ -33,21 +33,20 @@ def generate_launch_description():
         ExecuteProcess(
             cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
             output='screen'),
+
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            name='robot_state_publisher',
+            output='screen',
+            parameters=[{'use_sim_time': use_sim_time}],
+            arguments=[urdf_file]),
+
+ 
         Node(
             package='gazebo_ros',
             executable='spawn_entity.py',
             name='urdf_spawner',
             output='screen',
-            arguments=["-topic", "/robot_description", "-entity", "rosa"]),
-
-        Node(
-            package='robot_state_publisher',
-            executable='robot_state_publisher',
-            output='screen',
-            parameters=[{'robot_description':urdf_content, 'use_sim_time': use_sim_time }],
-            arguments = [urdf_file]),
-            
-
- 
- 
+            arguments=["-topic", "/robot_description", "-entity", "rosa"])
   ])

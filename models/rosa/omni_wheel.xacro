@@ -1,18 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rosa">
 
-  <xacro:macro name="mechanum_wheel" params="name parent dir:='left' *origin">
-   <joint name="${name}_joint" type="fixed">
-    <xacro:insert_block name="origin" />
-    <axis xyz="0 1 0" />
-    <joint_properties damping="1" friction="1" />
-    <parent link="${parent}" />
-    <child link="${name}_link" />
-   </joint>
+  <xacro:macro name="mechanum_wheel" params="name parent reflect:='false' *origin">
+
 
    <link name="${name}_link" type="wheel">
     <inertial>
-      <mass value="8.9" />
+      <mass value="1.0" />
       <origin xyz="0 0 0" rpy="0 0 0" />
         <inertia  ixx="0.04" ixy="0.0007" ixz="0.0"
                   iyy="0.02" iyz="0.004" 
@@ -20,30 +14,40 @@
     </inertial>
 
     <visual>
-     <origin xyz="0 0 0" rpy="0 0 0"/>
-     <geometry>
-     <xacro:if value="${dir == 'left'}">
-        <mesh filename="package://rosa_description/models/rosa/meshes/MECANUM_WHEEL.dae" scale="0.001 0.001 0.001"/>
-     </xacro:if>
-     <xacro:if value="${dir == 'right'}">
+     <geometry> 
+     <xacro:if value="${reflect}">
         <mesh filename="package://rosa_description/models/rosa/meshes/MECANUM_WHEEL.dae" scale="0.001 -0.001 0.001"/>
      </xacro:if>
+     <xacro:unless value="${reflect}">
+        <mesh filename="package://rosa_description/models/rosa/meshes/MECANUM_WHEEL.dae" scale="0.001 0.001 0.001"/>
+     </xacro:unless> 
      </geometry>
     </visual>
-
     <collision>
-     <origin xyz="0 0 0" rpy="0 0 0" />
+     <!-- if using mess instead cylinder, xyz = 0 rpy=0 -->
+     <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+     
      <geometry>
-        <mesh filename="package://rosa_description/models/rosa/meshes/MECANUM_WHEEL_SIMPLE.stl" scale="0.001 0.001 0.001"/>
+     
+        <!--
+        <mesh filename="package://rosa_description/models/rosa/meshes/MECANUM_WHEEL_SIMPLE.stl" scale="0.001 0.001 0.001"/> 
+        -->
+	<cylinder length="0.12" radius="0.12"/>
      </geometry>
     </collision>
    </link>
-
+   
+   <joint name="${name}_joint" type="continuous">
+    <xacro:insert_block name="origin" />
+    <axis xyz="0 1 0" />
+    <joint_properties damping="1" friction="1" />
+    <parent link="${parent}" />
+    <child link="${name}_link" />
+   </joint>
+   
   <gazebo reference="${name}_link">
-    <mu1 value="2.6"/>
-    <mu2 value="2.6"/>
-    <kp value="100000.0" />
-    <kd value="10.0" />
+    <mu1 value="1"/>
+    <mu2 value="1"/>
   </gazebo>
 
   </xacro:macro>
