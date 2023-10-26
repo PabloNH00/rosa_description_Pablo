@@ -16,28 +16,22 @@
     <visual>
      <geometry> 
      <xacro:if value="${reflect}">
-        <mesh filename="package://rosa_description/models/rosa/meshes/MECANUM_WHEEL.dae" scale="0.001 -0.001 0.001"/>
+        <mesh filename="file://$(find rosa_description)/models/rosa/meshes/MECANUM_WHEEL_mhg.dae" scale="1 -1 1"/>
      </xacro:if>
      <xacro:unless value="${reflect}">
-        <mesh filename="package://rosa_description/models/rosa/meshes/MECANUM_WHEEL.dae" scale="0.001 0.001 0.001"/>
+        <mesh filename="file://$(find rosa_description)/models/rosa/meshes/MECANUM_WHEEL_mhg.dae" scale="1 1 1"/>
      </xacro:unless> 
      </geometry>
     </visual>
     <collision>
-     <!-- if using mess instead cylinder, xyz = 0 rpy=0 -->
      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
-     
      <geometry>
-     
-        <!--
-        <mesh filename="package://rosa_description/models/rosa/meshes/MECANUM_WHEEL_SIMPLE.stl" scale="0.001 0.001 0.001"/> 
-        -->
-	<cylinder length="0.12" radius="0.12"/>
+	<cylinder length="0.06" radius="0.075"/>
      </geometry>
     </collision>
    </link>
    
-   <joint name="${name}_joint" type="continuous">
+   <joint name="${name}_joint" type="fixed">
     <xacro:insert_block name="origin" />
     <axis xyz="0 1 0" />
     <joint_properties damping="1" friction="1" />

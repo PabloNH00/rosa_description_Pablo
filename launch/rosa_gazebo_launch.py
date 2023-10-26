@@ -9,7 +9,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 import xacro
 
 def xacro_2_urdf_with_absolute_refs(pkg, xacro_model):
-    share_dir = get_package_share_directory(pkg)
+    share_dir =  get_package_share_directory(pkg)
     xacro_file = os.path.join(share_dir, xacro_model)
     robot_description_config = xacro.process_file(xacro_file)
     urdf_content = robot_description_config.toprettyxml().replace(f'package://{pkg}',share_dir)

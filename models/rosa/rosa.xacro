@@ -8,9 +8,9 @@
 
 
 
-<xacro:property name="wheel_x" value="0.34" />
-<xacro:property name="wheel_y" value="0.34" />
-<xacro:property name="wheel_z" value="0.13" />
+<xacro:property name="wheel_x" value="0.35" />
+<xacro:property name="wheel_y" value="0.295" />
+<xacro:property name="wheel_z" value="0.075" />
 
 
   <!-- Base Macro-->
