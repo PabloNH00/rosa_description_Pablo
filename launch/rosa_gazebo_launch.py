@@ -19,7 +19,8 @@ def xacro_2_urdf_with_absolute_refs(pkg, xacro_model):
     return urdf_file, urdf_content
     
 def generate_launch_description():
-  #urdf_file = xacro_2_urdf_with_absolute_refs('rosa_description','models/rosa/rosa.xacro')
+  share_dir =  get_package_share_directory('rosa_description')
+  world_file = os.path.join(share_dir,'models','worlds','pal_office.world')
   urdf_file, urdf_content = xacro_2_urdf_with_absolute_refs('rosa_description','models/rosa/rosa.xacro')
   use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
@@ -31,7 +32,7 @@ def generate_launch_description():
             description='Use simulation (Gazebo) clock if true'),
 
         ExecuteProcess(
-            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
+            cmd=['gazebo', world_file ,'--verbose', '-s', 'libgazebo_ros_factory.so'],
             output='screen'),
         Node(
             package='gazebo_ros',
