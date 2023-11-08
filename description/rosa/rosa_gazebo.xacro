@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot name="rosa" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+   <gazebo reference="base_link">
+    <gravity>true</gravity>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+   <gazebo reference="wheel_front_left_link">
+    <gravity>true</gravity>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+  <gazebo reference="wheel_front_right_link">
+    <gravity>true</gravity>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+  <gazebo reference="wheel_back_left_link">
+    <gravity>true</gravity>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+  <gazebo reference="wheel_back_right_link">
+    <gravity>true</gravity>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+
+</robot>
+
+

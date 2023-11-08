@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<robot name="rosa" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="materials.xacro" />
+  <xacro:include filename="rosa_gazebo.xacro" />
+  <xacro:include filename="omni_wheel.xacro" />
+  <xacro:include filename="rosa_body.xacro" />
+
+
+
+<xacro:property name="wheel_x" value="0.35" />
+<xacro:property name="wheel_y" value="0.295" />
+<xacro:property name="wheel_z" value="0.075" />
+
+
+  <!-- Base Macro-->
+  <xacro:rosa_base name="chasis">
+  </xacro:rosa_base>
+
+  <!-- Wheel Macro -->
+  <xacro:mechanum_wheel name="wheel_front_left" parent="base_link">
+  	<origin xyz="${wheel_x} ${wheel_y} 0" rpy="0 0 0" />
+  </xacro:mechanum_wheel>
+
+  <xacro:mechanum_wheel name="wheel_front_right" parent="base_link" reflect="true">
+  	<origin xyz="${wheel_x} -${wheel_y} 0" rpy="0 0 0" />
+  </xacro:mechanum_wheel>
+
+  <xacro:mechanum_wheel name="wheel_back_left" parent="base_link" reflect="true">
+  	<origin xyz="-${wheel_x} ${wheel_y} 0" rpy="0 0 3.14159" />
+  </xacro:mechanum_wheel>
+
+  <xacro:mechanum_wheel name="wheel_back_right" parent="base_link">
+  	<origin xyz="-${wheel_x} -${wheel_y} 0" rpy="0 0 3.14159" />
+  </xacro:mechanum_wheel> 
+
+<!-- Robot Footprint -->
+  <link name="base_footprint"/>
+  <link name="base_link"/>
+
+  <joint name="footprint_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0.0 0.0 -${wheel_z}" rpy="0 0 0"/>
+  </joint>
+  <joint name="chasis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chasis"/>
+    <origin xyz="0.0 0.0 0" rpy="0 0 0"/>
+  </joint>
+
+</robot>
