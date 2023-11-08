@@ -3,7 +3,7 @@
 ROSA robot repository for the ROS2 Simulation package 
 
 ### How to run the simulation ###
-    colcon build
+    colcon build --symlink-install
     source install/local_setup.bash
     ros2 launch rosa_description rosa_gazebo_launch.py
 
