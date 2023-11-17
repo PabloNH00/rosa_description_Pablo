@@ -38,7 +38,7 @@
       <base_length>0.65</base_length>
       <base_width>0.65</base_width>
       <front_left_joint>wheel_front_left_joint</front_left_joint>
-      <front_right__joint>wheel_front_right_joint</front_right__joint>
+      <front_right_joint>wheel_front_right_joint</front_right_joint>
       <rear_left_joint>wheel_back_left_joint</rear_left_joint>
       <rear_right_joint>wheel_back_right_joint</rear_right_joint>
       <wheel_max_speed> 20.0 </wheel_max_speed>
