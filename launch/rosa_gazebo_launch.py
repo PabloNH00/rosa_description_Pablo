@@ -36,13 +36,8 @@ def generate_launch_description():
             executable='spawn_entity.py',
             name='urdf_spawner',
             output='screen',
-            arguments=["-topic", "/robot_description", "-entity", "rosa"]) )
-            
-  ld.add_action(Node(
-            package='joint_state_publisher_gui',
-            executable='joint_state_publisher_gui',
-            output='screen'))    
-                  
+            arguments=["-topic", "/robot_description", "-entity", "rosa"]) )         
+                   
   ld.add_action(Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
