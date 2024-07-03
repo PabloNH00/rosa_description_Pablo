@@ -6,6 +6,8 @@
   <xacro:include filename="omni_wheel.xacro" />
   <xacro:include filename="rosa_body.xacro" />
   <xacro:include filename="realsense_d435.xacro" />
+  <xacro:include filename="lidar_sensor.xacro"/>
+
 
 
 <xacro:property name="wheel_x" value="0.35" />
@@ -41,6 +43,12 @@
         <origin xyz="0.425 0.0 1.59" rpy="0.0 0.0 0.0"/>
     </xacro:realsense_d435>
     -->
+
+  <!-- Sensor LiDAR -->
+  <xacro:lidar_sensor name="lidar_sensor" parent="base_link">
+    <origin xyz="0.53 0.0 0.01" rpy="0 0 0"/>
+  </xacro:lidar_sensor>
+  
 
 <!-- Robot Footprint -->
   <link name="base_footprint"/>
