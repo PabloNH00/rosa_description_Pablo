@@ -23,14 +23,16 @@ Start moving the robot publishing in /cmd_vel and save the map using the SLAM pl
 * "serialize map" for serialized version (.data and .posegraph)
 
 Once you have your map files modify "load_pre_mapped_params_online_async.yaml" and change "map_file_name" param with your path to the serialized files WITHOUT THE EXTENSION
+
     # will use pose
     map_file_name: /home/user/ros_ws/world_serialized
     # map_start_pose: [0.0, 0.0, 0.0]
+    
 
 For use your map for navigation run:
 
     ros2 launch rosa_description slam_launch.py use_pre_mapped:=true
-    
+
 
 * Repo owner or admin
 * Other community or team contact
