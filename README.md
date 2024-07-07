@@ -28,7 +28,9 @@ Once you have your map files modify "load_pre_mapped_params_online_async.yaml" a
     # map_start_pose: [0.0, 0.0, 0.0]
 
 For use your map for navigation run:
+
     ros2 launch rosa_description slam_launch.py use_pre_mapped:=true
+    
 
 * Repo owner or admin
 * Other community or team contact
