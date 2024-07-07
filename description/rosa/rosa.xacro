@@ -38,11 +38,10 @@
 
  <!-- ========= -->
     <!-- 3D CAMERA -->
-    <!-- ========= 
     <xacro:realsense_d435 name="realsense_head" parent="base_link">
         <origin xyz="0.425 0.0 1.59" rpy="0.0 0.0 0.0"/>
     </xacro:realsense_d435>
-    -->
+    
 
   <!-- Sensor LiDAR -->
   <xacro:lidar_sensor name="lidar_sensor" parent="base_link">
