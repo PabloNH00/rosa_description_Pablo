@@ -28,7 +28,7 @@ def generate_launch_description():
             description='Use simulation (Gazebo) clock if true'))
             
   ld.add_action(ExecuteProcess(
-            cmd=['gazebo', world_file , '-s', 'libgazebo_ros_factory.so'],
+            cmd=['gazebo', world_file , '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so'],
             output='screen'))
   #'--verbose' add this as parameter of gazebo command to see more info          
   ld.add_action(Node(

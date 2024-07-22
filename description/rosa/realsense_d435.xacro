@@ -46,7 +46,7 @@ aluminum peripherial evaluation case.
         <joint name="${name}_d435_joint" type="fixed">
             <xacro:insert_block name="origin" />
             <parent link="${parent}"/>
-            <child link="${name}_d435_link" />
+            <child link="${name}_link" />
         </joint>
 
 
@@ -54,7 +54,7 @@ aluminum peripherial evaluation case.
 
 
 
-        <link name="${name}_d435_link">
+        <link name="${name}_link">
             <visual>
                 <origin xyz="${d435_cam_mount_from_center_offset} 0.0 ${d435_cam_height/2}" rpy="${pi/2} 0 ${pi/2}"/>
                 <geometry>
@@ -77,26 +77,42 @@ aluminum peripherial evaluation case.
         </link>
 
         <!-- camera depth joints and links -->
-        <joint name="${name}_depth_camera_joint" type="fixed">
+        <joint name="${name}_depth_joint" type="fixed">
             <origin xyz="${d435_cam_depth_px} ${d435_cam_depth_py} ${d435_cam_depth_pz}" rpy="0 0 0"/>
-            <parent link="${name}_d435_link"/>
-            <child link="${name}_depth_camera_frame" />
+            <parent link="${name}_link"/>
+            <child link="${name}_depth_frame" />
         </joint>
-        <link name="${name}_depth_camera_frame"/>
+        <link name="${name}_depth_frame"/>
 
-        <joint name="${name}_camera_optical_joint" type="fixed">
+        <joint name="${name}_depth_optical_joint" type="fixed">
             <origin xyz="0.02 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
-            <parent link="${name}_depth_camera_frame" />
-            <child link="${name}_camera_optical_frame" />
+            <parent link="${name}_depth_frame" />
+            <child link="${name}_depth_optical_frame" />
         </joint>
-        <link name="${name}_camera_optical_frame"/>
+        <link name="${name}_depth_optical_frame"/>
+
+        <!-- camera color joints and links -->
+        <joint name="${name}_color_joint" type="fixed">
+            <origin xyz="${d435_cam_depth_px} ${d435_cam_depth_py} ${d435_cam_depth_pz}" rpy="0 0 0"/>
+            <parent link="${name}_link"/>
+            <child link="${name}_color_frame" />
+        </joint>
+        <link name="${name}_color_frame"/>
+
+        <joint name="${name}_color_optical_joint" type="fixed">
+            <origin xyz="0.02 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+            <parent link="${name}_color_frame" />
+            <child link="${name}_color_optical_frame" />
+        </joint>
+        <link name="${name}_color_optical_frame"/>
 
 
 
-        <gazebo reference="${name}_d435_link">
-            <sensor type="depth" name="${name}_depth_sensor">
+        <gazebo reference="${name}_link">
+            <sensor type="depth" name="${name}">
+                <visualize>true</visualize>
                 <update_rate>10.0</update_rate>
-                <camera name="${name}_camera">
+                <camera name="${name}_depth_camera">
                     <horizontal_fov>1.21</horizontal_fov>
                     <image>
                         <width>640</width>
@@ -113,7 +129,7 @@ aluminum peripherial evaluation case.
                     <baseline>0.2</baseline>
                     <alwaysOn>true</alwaysOn>
                     <updateRate>0.0</updateRate>
-                    <frame_name>${name}_camera_optical_frame</frame_name>
+                    <frame_name>${name}_depth_optical_frame</frame_name>
                     <pointCloudCutoff>0.105</pointCloudCutoff>
                     <pointCloudCutoffMax>10.0</pointCloudCutoffMax>
                     <distortionK1>0.00000001</distortionK1>
@@ -127,11 +143,11 @@ aluminum peripherial evaluation case.
                     <focalLength>0</focalLength>
                     <hackBaseline>0</hackBaseline>
                     <ros>
-        		<imageTopicName>${name}/image_raw</imageTopicName>
-        		<cameraInfoTopicName>${name}/camera_info</cameraInfoTopicName>
-        		<depthImageTopicName>${name}/depth_image_raw</depthImageTopicName>
-        		<pointCloudTopicName>${name}/points</pointCloudTopicName>
-     		    </ros>
+                        <imageTopicName>${name}/image_raw</imageTopicName>
+                        <cameraInfoTopicName>${name}/camera_info</cameraInfoTopicName>
+                        <depthImageTopicName>${name}/depth_image_raw</depthImageTopicName>
+                        <pointCloudTopicName>${name}/points</pointCloudTopicName>
+     		        </ros>
                 </plugin>
        
             </sensor>
