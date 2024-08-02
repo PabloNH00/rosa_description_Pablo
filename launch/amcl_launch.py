@@ -11,25 +11,22 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-
-    # nav2_bringup_launch_dir = os.path.join(
-    #     get_package_share_directory('nav2_bringup'), 'launch')
-    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-    slam = LaunchConfiguration('slam', default='False')
-
+    
     map_dir = os.path.join(
         'gaz_world.yaml') 
-    slam_params = os.path.join(
+    slam_params_file = os.path.join(
         './src/rosa_description_Pablo/config/mapper_params_online_async.yaml') 
-    nav2_params = os.path.join(
+    nav2_params_file = os.path.join(
         './src/rosa_description_Pablo/config/nav2_params.yaml')
     nav2_launcher_dir = os.path.join(
         get_package_share_directory('nav2_bringup'))
 
-    
-    # map_file = LaunchConfiguration("map", default = map_dir)
-    # params_file = LaunchConfiguration("params_file", default = nav2_params)
-    
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+    slam = LaunchConfiguration('slam', default='False')
+    slam_params_file = LaunchConfiguration('slam_params', default = slam_params_file)
+    nav2_params_file = LaunchConfiguration('params_file', default =nav2_params_file)
+    map_dir = LaunchConfiguration('map', default = map_dir)
+
     return LaunchDescription([
         DeclareLaunchArgument(
             'use_sim_time',
@@ -43,13 +40,19 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'params_file',
-            default_value=nav2_params,
+            default_value=nav2_params_file,
             description='Path to params file'
         ),
         DeclareLaunchArgument(
             'slam',
             default_value='False',
             description='Execute SLAM for mapping if true, else execute navigation'
+        ),
+
+        DeclareLaunchArgument(
+            'slam_params',
+            default_value=slam_params_file,
+            description='Path to SLAM parms file'
         ),
 
         # Nav2 launcher for navigation
@@ -60,9 +63,9 @@ def generate_launch_description():
             launch_arguments={
                 'map':map_dir,
                 'use_sim_time': use_sim_time,
-                'params_file': nav2_params,
+                'params_file': nav2_params_file,
                 'slam': slam,
-                'slam_params_file': slam_params
+                'slam_params_file': 'slam_params'
             }.items(),
         ),
 
