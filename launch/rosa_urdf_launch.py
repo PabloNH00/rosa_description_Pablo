@@ -11,7 +11,7 @@ from launch_ros.actions import Node
   
 def generate_launch_description():
 
-  use_sim_time = LaunchConfiguration('use_sim_time', default='true')
+  use_sim_time = LaunchConfiguration('use_sim_time', default='false')
  
 
   share_dir =  get_package_share_directory('rosa_description')
@@ -27,17 +27,6 @@ def generate_launch_description():
             default_value='false',
             description='Use simulation (Gazebo) clock if true'))
             
-  ld.add_action(ExecuteProcess(
-            cmd=['gazebo', world_file , '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so'],
-            output='screen'))
-  #'--verbose' add this as parameter of gazebo command to see more info          
-  ld.add_action(Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            name='urdf_spawner',
-            output='screen',
-            arguments=["-topic", "/robot_description", "-entity", "rosa"]) )         
-                   
   ld.add_action(Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
