@@ -24,7 +24,7 @@ After launch gazebo launch SLAM for map the world:
 It will run "bringup_launch.py" from nav2 stack and pass the parameter slam to launch "online_async_launch.py" from slam_toolbox, it will also execute a pre-configured rviz2 with all necessary components. This launcher set by default the use_sim_time argument as "false", it should be true for SLAM in gazebo. 
 
 
-Start moving the robot publishing in /cmd_vel and save the map using the SLAM plug-in openned in rviz2 
+Start moving the robot publishing in /cmd_vel or using goal pose and save the map using the SLAM plug-in openned in rviz2 
 * "save map" for .pgm and .yaml (necessary for navigation)
 * "serialize map" for serialized version (.data and .posegraph)
 

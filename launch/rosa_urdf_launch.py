@@ -3,7 +3,7 @@ import xacro
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess
+from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
@@ -15,7 +15,6 @@ def generate_launch_description():
  
 
   share_dir =  get_package_share_directory('rosa_description')
-  world_file = os.path.join(share_dir,'worlds','pal_office.world')
   model_file = os.path.join(share_dir, 'description', 'rosa','rosa.xacro')
   urdf_content = xacro.process_file(model_file).toprettyxml()
   
