@@ -16,7 +16,7 @@ The URDF model stablishes a transform tree headed by "base_footprint" frame, whi
 
 ## Frames and joints
 
-![Transform Tree](images/tf_tree.png)
+![Transform Tree](../images/tf_tree.png)
 
 Frames fom top to bottom:
 - **base_footprint:** 

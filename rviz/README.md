@@ -5,7 +5,7 @@ They are included in the launchers to open rviz with the necessary displays and 
 
 ##nav2_rviz_config.rviz
 
-![rviz slam config.](images/rviz_navigation_config.png)
+![rviz slam config.](../images/rviz_navigation_config.png)
 
 Displays included:
  - Grid
@@ -22,7 +22,7 @@ Displays included:
  
 ##slam_rviz_config.rviz
 
-![rviz slam config.](images/rviz_slam_config.png)
+![rviz slam config.](../images/rviz_slam_config.png)
 
 Displays included:
  - Grid

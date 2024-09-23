@@ -8,7 +8,7 @@ Launches Gazebo program with the ROS2 parameter "use_sim_time" set to true. This
 
 Gazebo opens with preloaded URDF a world, which correspond to "/worlds/pal_office.world"
 
-![rosa_gazebo_launch.py](images/rosa_gazebo_launch.png)
+![rosa_gazebo_launch.py](../images/rosa_gazebo_launch.png)
 
 ## rosa_urdf_launch.py
 
