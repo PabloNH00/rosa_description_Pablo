@@ -8,8 +8,6 @@ from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import Node
 
 
-
-
 def generate_launch_description():
     
     map_dir = os.path.join(
@@ -20,6 +18,8 @@ def generate_launch_description():
         './src/rosa_description_Pablo/config/nav2_params.yaml')
     nav2_launcher_dir = os.path.join(
         get_package_share_directory('nav2_bringup'))
+    urg_node2_dir = os.path.join(
+        get_package_share_directory('urg_node2'))
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     slam = LaunchConfiguration('slam', default='False')
@@ -34,9 +34,14 @@ def generate_launch_description():
             description='Use simulation (Gazebo) clock if true'
         ),
         DeclareLaunchArgument(
-            'map',
-            default_value=map_dir,
-            description='Path to map file'
+            'slam',
+            default_value='False',
+            description='Execute SLAM for mapping if true, else execute navigation'
+        ),
+        DeclareLaunchArgument(
+            'slam_params',
+            default_value=slam_params_file,
+            description='Path to SLAM parms file'
         ),
         DeclareLaunchArgument(
             'params_file',
@@ -44,16 +49,16 @@ def generate_launch_description():
             description='Path to params file'
         ),
         DeclareLaunchArgument(
-            'slam',
-            default_value='False',
-            description='Execute SLAM for mapping if true, else execute navigation'
-        ),
+            'map',
+            default_value=map_dir,
+            description='Path to map file'
+        ),   
 
         DeclareLaunchArgument(
-            'slam_params',
-            default_value=slam_params_file,
-            description='Path to SLAM parms file'
-        ),
+            'lidar',
+            default_value='false',
+            description='Execute urg_node2 for activate the lidar node'
+        ),     
 
         # Nav2 launcher for navigation
         IncludeLaunchDescription(
@@ -69,6 +74,13 @@ def generate_launch_description():
             }.items(),
         ),
 
+        # Nav2 launcher for navigation
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                [urg_node2_dir, '/launch/urg_node2.launch.py']
+            ),
+            condition=LaunchConfigurationNotEquals('lidar', 'false'),
+        ),
         # Rviz2 config
         Node(
             condition=LaunchConfigurationNotEquals('slam', 'False'),
