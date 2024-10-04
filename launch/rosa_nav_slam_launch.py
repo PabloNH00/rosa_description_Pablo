@@ -10,12 +10,14 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     
+    #Get dynamic path of /launch
+    current_launch_dir = os.path.dirname(os.path.realpath(__file__))
+
     map_dir = os.path.join(
         'gaz_world.yaml') 
-    slam_params_file = os.path.join(
-        './src/rosa_description_Pablo/config/mapper_params_online_async.yaml') 
-    nav2_params_file = os.path.join(
-        './src/rosa_description_Pablo/config/nav2_params.yaml')
+    
+    slam_params_file = os.path.join(current_launch_dir, '../config', 'mapper_params_online_async.yaml')
+    nav2_params_file = os.path.join(current_launch_dir, '../config', 'nav2_params.yaml')
     nav2_launcher_dir = os.path.join(
         get_package_share_directory('nav2_bringup'))
     urg_node2_dir = os.path.join(
@@ -53,7 +55,6 @@ def generate_launch_description():
             default_value=map_dir,
             description='Path to map file'
         ),   
-
         DeclareLaunchArgument(
             'lidar',
             default_value='false',

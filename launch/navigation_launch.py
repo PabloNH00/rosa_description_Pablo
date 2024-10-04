@@ -8,6 +8,9 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
+    #Get dynamic path of /launch
+    current_launch_dir = os.path.dirname(os.path.realpath(__file__))
+
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
     slam_toolbox_launch_dir = os.path.join(
@@ -15,10 +18,10 @@ def generate_launch_description():
     nav2_bringup_launch_dir = os.path.join(
         get_package_share_directory('nav2_bringup'), 'launch')
 
-    pre_mapped_params = os.path.join(
-        './src/rosa_description_Pablo/config/load_pre_mapped_params_online_async.yaml')  
-    nav2_params = os.path.join(
-        './src/rosa_description_Pablo/config/nav2_params.yaml')
+    nav2_params = os.path.join(current_launch_dir, '../config', 'nav2_params.yaml')
+
+    #MODIFY: "map_file_name" with the path to your map in "load_pre_mapped_params_online_async.yaml"
+    pre_mapped_params = os.path.join(current_launch_dir, '../config', 'load_pre_mapped_params_online_async.yaml')
 
     return LaunchDescription([
         DeclareLaunchArgument(
