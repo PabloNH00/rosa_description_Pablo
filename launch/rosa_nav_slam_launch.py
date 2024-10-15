@@ -75,7 +75,7 @@ def generate_launch_description():
             }.items(),
         ),
 
-        # Nav2 launcher for navigation
+        # LiDAR launcher for navigation
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 [urg_node2_dir, '/launch/urg_node2.launch.py']
