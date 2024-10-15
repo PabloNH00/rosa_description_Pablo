@@ -37,7 +37,7 @@ def generate_launch_description():
     PythonLaunchDescriptionSource(
                 [urg_node2_dir, '/launch/urg_node2.launch.py']
     ),
-    condition=LaunchConfigurationNotEquals('lidar', 'false'),
+    condition=LaunchConfigurationNotEquals('lidar', 'true'),
     )   
   )         
   ld.add_action(Node(

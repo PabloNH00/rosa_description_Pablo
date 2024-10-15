@@ -20,8 +20,6 @@ def generate_launch_description():
     nav2_params_file = os.path.join(current_launch_dir, '../config', 'nav2_params.yaml')
     nav2_launcher_dir = os.path.join(
         get_package_share_directory('nav2_bringup'))
-    urg_node2_dir = os.path.join(
-        get_package_share_directory('urg_node2'))
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     slam = LaunchConfiguration('slam', default='False')
@@ -55,11 +53,6 @@ def generate_launch_description():
             default_value=map_dir,
             description='Path to map file'
         ),   
-        DeclareLaunchArgument(
-            'lidar',
-            default_value='false',
-            description='Execute urg_node2 for activate the lidar node'
-        ),     
 
         # Nav2 launcher for navigation
         IncludeLaunchDescription(
@@ -75,13 +68,6 @@ def generate_launch_description():
             }.items(),
         ),
 
-        # LiDAR launcher for navigation
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [urg_node2_dir, '/launch/urg_node2.launch.py']
-            ),
-            condition=LaunchConfigurationNotEquals('lidar', 'false'),
-        ),
         # Rviz2 config
         Node(
             condition=LaunchConfigurationNotEquals('slam', 'False'),
