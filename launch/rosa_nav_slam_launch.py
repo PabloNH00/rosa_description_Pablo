@@ -13,8 +13,7 @@ def generate_launch_description():
     #Get dynamic path of /launch
     current_launch_dir = os.path.dirname(os.path.realpath(__file__))
 
-    map_dir = os.path.join(
-        'gaz_world.yaml') 
+    map_dir = os.path.join(current_launch_dir, '../gz_slam_map', 'gaz_world.yaml') 
     
     slam_params_file = os.path.join(current_launch_dir, '../config', 'mapper_params_online_async.yaml')
     nav2_params_file = os.path.join(current_launch_dir, '../config', 'nav2_params.yaml')
@@ -36,7 +35,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'slam',
             default_value='False',
-            description='Execute SLAM for mapping if true, else execute navigation'
+            description='Execute SLAM for mapping if "True", else execute navigation'
         ),
         DeclareLaunchArgument(
             'slam_params',

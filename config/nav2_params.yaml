@@ -286,7 +286,7 @@ map_server:
     use_sim_time: True
     # Overridden in launch by the "map" launch configuration or provided default value.
     # To use in yaml, remove the default "map" value in the tb3_simulation_launch.py file & provide full path to map below.
-    yaml_filename: "/home/pablonh-ubuntu/tfg_ROSA_ws/gaz_world"
+    yaml_filename: "../gz_slam_map/gaz_world"
 
 map_saver:
   ros__parameters:
